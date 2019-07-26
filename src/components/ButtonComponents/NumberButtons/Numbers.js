@@ -8,23 +8,27 @@ import { numbers } from '../../../data';
 
 const Numbers = (props) => {
   // STEP 2 - add the imported data to state
-  // const { identifier } = props;
+  const { clicked } = props;
 
   const createNumBtns = numbers.map(num => {
     if (num === '.') {
       return <NumberButton
+        key={num}
         buttonClass={`decBtn`}
-        buttonContent={num}></NumberButton>
+        buttonContent={num}
+        clicked={clicked}></NumberButton>
     } else {
       return <NumberButton
+        key={num}
         buttonClass={`btn${num}`}
-        buttonContent={num}></NumberButton>
+        buttonContent={num}
+        clicked={clicked}></NumberButton>
     }
-
+   
 
   })
 
-
+// console.log(createNumBtns)
   return (
     <div className='numberButtons'>
       {/* STEP 3 - Use .map() to iterate over your array data and return a button

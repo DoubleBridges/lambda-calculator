@@ -17,18 +17,22 @@ function App() {
   // Your functions should accept a parameter of the the item data being displayed to the DOM (ie - should recieve 5 if the user clicks on
   // the "5" button, or the operator if they click one of those buttons) and then call your setter function to update state.
   // Don't forget to pass the functions (and any additional data needed) to the components as props
+  const [display, setDisplay] = useState(0)
 
-  const {display, setDisplay} = useState(0)
-  console.log(display)
-  console.log(setDisplay)
-  console.log(useState)
+  const buttonHandler = (e) => {
+    // setDisplay(e.props.buttonContent)
+    setDisplay(e.target.textContent)
+  }
+
+// useEffect(() => setDisplay(buttonHandler()), [calcButtons])
 
   return (
     <div className="container">
       <Logo />
-      <Display
-        readOut={display} />
-      <Numbers />
+      <Display 
+      display={display}/>
+      <Numbers 
+      clicked={buttonHandler}/>
       <Operators />
       <Specials />
     </div>

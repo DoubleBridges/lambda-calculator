@@ -1,12 +1,18 @@
+body {
+    box-sizing: border-box;
+}
+
 .container {
-    width                : 600px;
-    height               : 900px;
+    width                : 450px;
+    height               : 750px;
     display              : grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows   : 0.8fr 1.2fr 1fr 1fr 1fr 1fr 1fr;
-    // grid-column-gap      : 14px;
-    // grid-row-gap         : 17px;
-    background-color     : aquamarine
+    grid-template-rows   : 0.6fr 1.1fr 1fr 1fr 1fr 1fr 1fr;
+    background-color     : rgb(199, 43, 56);
+    padding              : 50px;
+    border-radius        : 30px;
+    color: whitesmoke;
+    // font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .logo-container {
@@ -15,102 +21,124 @@
     color    : black;
 
     .logo {
-        padding: 20px;
     }
 }
 
-.display {
-    grid-area: 2 / 1 / 3 / 5;
-    // display  : block;
-    background-color: darkslategrey;
+.screen {
+    grid-area       : 2 / 1 / 3 / 5;
+    display      : flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: rgb(28, 54, 54);
+    border-radius: 60px;
+
+    .display {
+        padding-right: 50px;
+    }
+}
+
+.btn {
+    border-radius   : 60px;
+    background-color: rgb(26, 72, 131);
+    color           : whitesmoke;
+    box-shadow      : 0px 4px 2px 0px black;
+    border-color: rgb(24, 65, 119);
+    font            : 600 3rem bolder;
+    // box-shadow   : inset 0px 2px 3px 1px whitesmoke;
 }
 
 
 .numberButtons {
-    display: grid;
-    grid-area: 4 / 1 / 8 / 4;
+    display              : grid;
+    grid-area            : 4 / 1 / 8 / 4;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows   : 1fr 1fr 1fr 1fr;
+    grid-column-gap      : 18px;
+    grid-row-gap         : 18px;
 
-.btn1 {
-    grid-area: 1/1/2/2;
-}
-// 
-.btn2 {
-    grid-area: 1/2/2/3;
-}
-// 
-.btn3 {
-    grid-area: 1/3/2/4;
-}
-// 
-.btn4 {
-    grid-area: 2/1/3/2;
-}
-// 
-.btn5 {
-    grid-area: 2/2/3/3;
-}
-// 
-.btn6 {
-    grid-area: 2/3/3/4;
-}
-// 
-.btn7 {
-    grid-area: 3/1/4/2;
-}
-// 
-.btn8 {
-    grid-area: 3/2/4/3;
-}
-// 
-.btn9 {
-    grid-area: 3/3/4/4;
-}
-// 
-.btn0 {
-    grid-area: 4/1/5/3;
-}
-// 
-.decBtn {
-    grid-area: 4/3/5/4;
-// 
+    .btn1 {
+        grid-area: 1/1/2/2;
+    }
+
+    .btn2 {
+        grid-area: 1/2/2/3;
+    }
+
+    .btn3 {
+        grid-area: 1/3/2/4;
+    }
+
+    .btn4 {
+        grid-area: 2/1/3/2;
+    }
+
+    .btn5 {
+        grid-area: 2/2/3/3;
+    }
+
+    .btn6 {
+        grid-area: 2/3/3/4;
+    }
+
+    .btn7 {
+        grid-area: 3/1/4/2;
+    }
+
+    .btn8 {
+        grid-area: 3/2/4/3;
+    }
+
+    .btn9 {
+        grid-area: 3/3/4/4;
+    }
+
+    .btn0 {
+        grid-area: 4/1/5/3;
+    }
+
+    .decBtn {
+        grid-area: 4/3/5/4;
+
+    }
 }
 
 .specialButtons {
+    display              : grid;
+    grid-area            : 3/1/4/4;
+    grid-template-columns: 1fr, 1fr, 1fr;
 
+    .clearBtn {
+        grid-area: 3 / 1 / 4 / 2;
+    }
+
+    .inverseBtn {
+        grid-area: 3 / 2 / 4 / 3;
+    }
+
+    .percentBtn {
+        grid-area: 3 / 3 / 4 / 4;
+    }
 }
 
-// .remainderBtn {
-//     grid-area: 3 / 4 / 4 / 5;
-// }
+.operatorButtons {
 
-// .prodBtn {
-//     grid-area: 4 / 4 / 5 / 5;
-// }
+    .remainderBtn {
+        grid-area: 3 / 4 / 4 / 5;
+    }
 
-// .subBtn {
-//     grid-area: 5 / 4 / 6 / 5;
-// }
+    .prodBtn {
+        grid-area: 4 / 4 / 5 / 5;
+    }
 
-// .addBtn {
-//     grid-area: 6 / 4 / 7 / 5;
-// }
+    .subBtn {
+        grid-area: 5 / 4 / 6 / 5;
+    }
 
-// .resultBtn {
-//     grid-area: 7 / 4 / 8 / 5;
-// }
+    .addBtn {
+        grid-area: 6 / 4 / 7 / 5;
+    }
 
-// .clearBtn {
-//     grid-area: 3 / 1 / 4 / 2;
-// }
-
-// .inverseBtn {
-//     grid-area: 3 / 2 / 4 / 3;
-// }
-
-// .percentBtn {
-//     grid-area: 3 / 3 / 4 / 4;
-// }
-
+    .resultBtn {
+        grid-area: 7 / 4 / 8 / 5;
+    }
 }
