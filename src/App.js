@@ -20,8 +20,13 @@ function App() {
   const [display, setDisplay] = useState(0)
 
   const buttonHandler = (e) => {
-    // setDisplay(e.props.buttonContent)
-    setDisplay(e.target.textContent)
+    if (display === 0) {
+      let firstArg =display.toString().concat(e.target.textContent).slice(1)
+      setDisplay(firstArg)
+    } else {
+      let firstArg = display.toString().concat(e.target.textContent)
+      setDisplay(firstArg)  
+    }
   }
 
 // useEffect(() => setDisplay(buttonHandler()), [calcButtons])
