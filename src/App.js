@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Display from '../src/components/DisplayComponents/Display'
 import Numbers, { numbersChars } from './components/ButtonComponents/NumberButtons/Numbers'
 import Operators, { operatorChars } from './components/ButtonComponents/OperatorButtons/Operators'
-import Specials, { specialChars } from './components/ButtonComponents/SpecialButtons/Specials'
+import Specials from './components/ButtonComponents/SpecialButtons/Specials'
 
 import "./App.scss";
 import Logo from "./components/DisplayComponents/Logo";
@@ -24,6 +24,7 @@ function App() {
           : setDisplay(currentDisplay.concat(char))
   }
 
+
   const operatorHandler = (e) => {
 
     const char = e.target.attributes.getNamedItem('operation').value
@@ -35,22 +36,21 @@ function App() {
         : setDisplay(currentDisplay.concat(char))
   }
 
+
   const specialHandler = (e) => {
 
     const char = e.target.textContent
 
     const inverse = (num) => {
-      return num > 0 ? num - (num*2)
-      : num + (num*2)
+      return num > 0 ? num - (num * 2)
+        : num + (num * 2)
     }
 
     return char === "C" ? setDisplay(0)
-      : char === "%" ? setDisplay(math.round(math.evaluate(display))/100) 
-      : char === "+/-" ? setDisplay(inverse(math.evaluate(display)))
-      : setDisplay("Some Other Button")
-
-
+      : char === "%" ? setDisplay(math.round(math.evaluate(display)) / 100)
+        : setDisplay(inverse(math.evaluate(display)))
   }
+
 
   const buttonHandler = (e) => {
 
@@ -59,9 +59,7 @@ function App() {
     return numbersChars.includes(char) ? numberHandler(e)
       : operatorChars.includes(char) ? operatorHandler(e)
         : specialHandler(e)
-
   }
-
 
 
   return (

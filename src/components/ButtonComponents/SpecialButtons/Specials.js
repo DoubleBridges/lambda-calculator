@@ -18,7 +18,6 @@ const Specials = (props) => {
 
   })
 
-
   return (
     <div className="special-buttons">
       {createSpecialBtns}
