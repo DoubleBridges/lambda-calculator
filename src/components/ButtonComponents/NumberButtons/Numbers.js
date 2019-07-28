@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import NumberButton from './NumberButton'
 import { numbers } from '../../../data';
@@ -6,27 +6,19 @@ import { numbers } from '../../../data';
 export let firstArg = ''
 export let secondArg = ''
 
-const numberHandler = (e) => firstArg.concat(e.target.textContent)
 
 
-const Numbers = () => {
+
+const Numbers = (props) => {
+
+  const {clicked} = props
 
   const createNumBtns = numbers.map(num => {
-    if (num === '.') {
       return <NumberButton
-        key={num}
-        buttonClass={`decBtn`}
-        buttonContent={num}
-        clicked={numberHandler}></NumberButton>
-    } else {
-      return <NumberButton
-        key={num}
-        buttonClass={`btn${num}`}
-        buttonContent={num}
-        clicked={numberHandler}></NumberButton>
-    }
-
-
+        key={num.char}
+        buttonClass={num.class}
+        buttonContent={num.char}
+        clicked={clicked}></NumberButton>
   })
 
   // console.log(createNumBtns)
