@@ -1,13 +1,16 @@
 import React from "react";
 
 import NumberButton from './NumberButton'
-import { numbers } from '../../../data';
+import { numbers } from '../../../data'
+
+export const numbersChars = numbers.map(numChar => numChar = numChar.char)
 
 const Numbers = (props) => {
 
   const { clicked } = props
 
   const createNumBtns = numbers.map(num => {
+
     return <NumberButton
       key={num.char}
       buttonClass={num.class}
@@ -22,5 +25,5 @@ const Numbers = (props) => {
   );
 };
 
-export default Numbers;
+export default Numbers
 
