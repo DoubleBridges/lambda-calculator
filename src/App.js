@@ -4,8 +4,6 @@ import Numbers, { firstArg, secondArg} from './components/ButtonComponents/Numbe
 import Operators, { operator } from './components/ButtonComponents/OperatorButtons/Operators'
 import Specials from './components/ButtonComponents/SpecialButtons/Specials'
 
-import { numbers, operators, specials } from './data'
-
 import "./App.scss";
 
 // Logo has already been provided for you. Do the same for the remaining components

@@ -5,7 +5,8 @@ import { numbers } from '../../../data';
 
 export let firstArg = ''
 export let secondArg = ''
-const numberHandler = (e) => firstArg.toString().concat(e.target.textContent)
+
+const numberHandler = (e) => firstArg.concat(e.target.textContent)
 
 
 const Numbers = () => {
