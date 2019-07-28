@@ -5,7 +5,7 @@ const NumberButton = (props) => {
   return (
     <>
       <button className={`btn ${buttonClass}`}
-       onClick={clicked}>{buttonContent}</button>
+        onClick={clicked}>{buttonContent}</button>
     </>
   );
 };
