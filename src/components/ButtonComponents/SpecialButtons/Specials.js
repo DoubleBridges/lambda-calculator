@@ -10,7 +10,7 @@ const Specials = (props) => {
   const createSpecialBtns = specials.map(char => {
     return <SpecialButton
       key={char.char}
-      buttonClass={`btn ${char.class}`}
+      buttonClass={char.class}
       buttonContent={char.char}
       clicked={clicked}></SpecialButton>
 

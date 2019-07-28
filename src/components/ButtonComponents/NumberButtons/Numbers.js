@@ -5,8 +5,6 @@ import { numbers } from '../../../data';
 
 export const numbersChars = numbers.map(numChar => numChar = numChar.char)
 
-console.log(`numbers.js line 8`, typeof numbersClasses)
-
 const Numbers = (props) => {
 
   const { clicked } = props

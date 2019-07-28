@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Display from '../src/components/DisplayComponents/Display'
 import Numbers, { numbersChars } from './components/ButtonComponents/NumberButtons/Numbers'
-import Operators from './components/ButtonComponents/OperatorButtons/Operators'
+import Operators, { operatorChars } from './components/ButtonComponents/OperatorButtons/Operators'
 import Specials from './components/ButtonComponents/SpecialButtons/Specials'
 
 import "./App.scss";
@@ -13,19 +13,27 @@ function App() {
   const [display, setDisplay] = useState(0)
 
   const numberHandler = (e) => {
-    console.log(`16 ${e}`)
-    return (display == 0) ? setDisplay(display.toString().concat(e.target.textContent).slice(1))
+    return (display.toString() === "0") ? setDisplay(display.toString().concat(e.target.textContent).slice(1))
+      : setDisplay(display.toString().concat(e.target.textContent))
+  }
+
+  const operatorHandler = (e) => {
+
+    // const currentDisplay = display.splt('')
+
+    // console.log(display, display.split(''), display.split('').includes(e.target.textContent))
+
+    return display.split('').includes(e.target.textContent) ? setDisplay("Two Operators Not Allowed")
       : setDisplay(display.toString().concat(e.target.textContent))
   }
 
   const buttonHandler = (e) => {
-    console.log(`22`, numbersChars, e.target)
     return numbersChars.includes(e.target.textContent) ? numberHandler(e)
+      : operatorChars.includes(e.target.textContent) ? operatorHandler(e)
       : setDisplay("Didn't work")
 
   }
 
-  // console.log(`27 ${numbersClasses}`)
 
 
   return (
