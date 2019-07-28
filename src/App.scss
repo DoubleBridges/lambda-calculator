@@ -19,6 +19,9 @@ body {
     display  : block;
     grid-area: 1 / 1 / 2 / 5;
     color    : black;
+
+    .logo {
+    }
 }
 
 .screen {
@@ -31,8 +34,6 @@ body {
 
     .display {
         padding-right: 50px;
-        font            : 600 3rem bolder;
-
     }
 }
 
