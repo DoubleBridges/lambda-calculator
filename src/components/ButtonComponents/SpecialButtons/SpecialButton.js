@@ -1,11 +1,13 @@
 import React from "react";
 
 const SpecialButton = (props) => {
-  const {buttonClass, buttonContent, clicked} = props
+
+  const { buttonClass, buttonContent, clicked } = props
+
   return (
     <>
       <button className={`btn ${buttonClass}`}
-      onClick={clicked}>{buttonContent}</button>
+        onClick={clicked}>{buttonContent}</button>
     </>
   );
 };

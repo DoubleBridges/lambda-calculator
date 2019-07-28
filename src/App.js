@@ -23,7 +23,7 @@ function App() {
       <Display
         display={display} />
       <Numbers
-      clicked={buttonHandler} />
+        clicked={buttonHandler} />
       <Operators
         clicked={buttonHandler} />
       <Specials

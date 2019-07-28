@@ -1,7 +1,9 @@
 import React from "react";
 
 const NumberButton = (props) => {
+
   const { buttonClass, buttonContent, clicked } = props
+
   return (
     <>
       <button className={`btn ${buttonClass}`}
