@@ -9,24 +9,42 @@ export const numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "."];
 export const operators = [
   {
     char: "/",
-    value: "/"
+    value: "/",
+    class: "remainderBtn"
   },
   {
     char: "x",
-    value: "*"
+    value: "*",
+    class: "prodBtn"
   },
   {
     char: "-",
-    value: "-"
+    value: "-",
+    class: "subBtn"
   },
   {
     char: "+",
-    value: "+"
+    value: "+",
+    class: "addBtn"
   },
   {
     char: "=",
-    value: "="
+    value: "=",
+    class: "calculateBtn"
   }
 ];
 
-export const specials = ["C", "+/-", "%"];
+export const specials = [
+  {
+    char: "C",
+    class: "clearBtn"
+  },
+  {
+    char: "+/-",
+    class: "inverseBtn"
+  },
+  {
+    char: "%",
+    class: "percentBtn"
+  }
+];
