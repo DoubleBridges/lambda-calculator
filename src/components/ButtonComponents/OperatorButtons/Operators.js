@@ -7,7 +7,7 @@ export const operatorChars = operators.map(opChar => opChar = opChar.char)
 
 const Operators = (props) => {
 
-  const {clicked} = props
+  const { clicked } = props
 
   const createOperatorBtns = operators.map(op => {
     return <OperatorButton
@@ -26,4 +26,3 @@ const Operators = (props) => {
 };
 
 export default Operators
- 
