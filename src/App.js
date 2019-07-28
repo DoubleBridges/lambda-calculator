@@ -14,51 +14,62 @@ function App() {
   const [display, setDisplay] = useState(0)
 
   const numberHandler = (e) => {
-    return ((e.target.textContent === ".") && (display.toString().split('').includes("."))) ? setDisplay("Error")
-    : (e.target.textContent === ".") ? setDisplay(display.toString().concat(e.target.textContent))
-    : (display.toString() === "0") ? setDisplay(display.toString().concat(e.target.textContent).slice(1))
-    : setDisplay(display.toString().concat(e.target.textContent))
-}
 
-const operatorHandler = (e) => {
+    const currentDisplay = display.toString()
+    const char = e.target.textContent
 
-  let char = e.target.attributes.getNamedItem('operation').value
-
-  return char === "=" ? setDisplay(math.evaluate(display))
-    : operatorChars.map(item => display.toString().split('').includes(item)).includes(true) ? setDisplay("Two Operators Not Allowed")
-      : setDisplay(display.toString().concat(char))
-}
-
-const specialHandler = (e) => {
-
-  return e.target.textContent === "C" ? setDisplay(0)
-    : setDisplay("some Other Button")
-
-
-}
-
-const buttonHandler = (e) => {
-  return numbersChars.includes(e.target.textContent) ? numberHandler(e)
-    : operatorChars.includes(e.target.textContent) ? operatorHandler(e)
-      : specialHandler(e)
-
-}
-
-
-
-return (
-  <div className="container">
-    <Logo />
-    <Display
-      display={display} />
-    <Numbers
-      clicked={buttonHandler} />
-    <Operators
-      clicked={buttonHandler} />
-    <Specials
-      clicked={buttonHandler} />
-  </div>
-);
+    return ((char === ".") && (currentDisplay.split('').includes("."))) ? setDisplay("Error")
+      : (char === ".") ? setDisplay(currentDisplay.concat(char))
+        : (currentDisplay === "0") ? setDisplay(currentDisplay.concat(char).slice(1))
+          : setDisplay(currentDisplay.concat(char))
   }
+
+  const operatorHandler = (e) => {
+
+    let char = e.target.attributes.getNamedItem('operation').value
+    const currentDisplay = display.toString()
+
+    return char === "=" ? setDisplay(math.round(math.evaluate(display), 4))
+      : operatorChars.map(item => currentDisplay.split('').includes(item)).includes(true) ? setDisplay("Two Operators Not Allowed")
+        : setDisplay(currentDisplay.concat(char))
+  }
+
+  const specialHandler = (e) => {
+
+    const char = e.target.textContent
+
+    return char === "C" ? setDisplay(0)
+      : char === "%" ? setDisplay(math.round(math.evaluate(display))/100) 
+      : setDisplay("Some Other Button")
+
+
+  }
+
+  const buttonHandler = (e) => {
+
+    const char = e.target.textContent
+
+    return numbersChars.includes(char) ? numberHandler(e)
+      : operatorChars.includes(char) ? operatorHandler(e)
+        : specialHandler(e)
+
+  }
+
+
+
+  return (
+    <div className="container">
+      <Logo />
+      <Display
+        display={display} />
+      <Numbers
+        clicked={buttonHandler} />
+      <Operators
+        clicked={buttonHandler} />
+      <Specials
+        clicked={buttonHandler} />
+    </div>
+  );
+}
 
 export default App
