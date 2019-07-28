@@ -26,11 +26,12 @@ function App() {
 
   const operatorHandler = (e) => {
 
-    let char = e.target.attributes.getNamedItem('operation').value
+    const char = e.target.attributes.getNamedItem('operation').value
     const currentDisplay = display.toString()
+    const total = math.round(math.evaluate(display), 4)
 
-    return char === "=" ? setDisplay(math.round(math.evaluate(display), 4))
-      : operatorChars.map(item => currentDisplay.split('').includes(item)).includes(true) ? setDisplay("Two Operators Not Allowed")
+    return char === "=" ? setDisplay(total)
+      : operatorChars.map(item => currentDisplay.split('').includes(item)).includes(true) ? setDisplay(`${total}${char}`)
         : setDisplay(currentDisplay.concat(char))
   }
 
@@ -38,8 +39,14 @@ function App() {
 
     const char = e.target.textContent
 
+    const inverse = (num) => {
+      return num > 0 ? num - (num*2)
+      : num + (num*2)
+    }
+
     return char === "C" ? setDisplay(0)
       : char === "%" ? setDisplay(math.round(math.evaluate(display))/100) 
+      : char === "+/-" ? setDisplay(inverse(math.evaluate(display)))
       : setDisplay("Some Other Button")
 
 
