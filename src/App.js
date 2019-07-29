@@ -24,7 +24,7 @@ function App() {
 
     setHasDecimal(currentDisplay.split('').includes("."))
 
-    return (char === ".") &&  hasDecimal ? setDisplay("Error")
+    return (char === ".") && hasDecimal ? setDisplay("Error")
       : (char === ".") ? setDisplay(currentDisplay.concat(char))
         : (currentDisplay === "0") ? setDisplay(currentDisplay.concat(char).slice(1))
           : setDisplay(currentDisplay.concat(char))
@@ -36,6 +36,7 @@ function App() {
     const char = e.target.attributes.getNamedItem('operation').value
     const total = math.round(math.evaluate(display), 4)
 
+
     // setHasOperator(operatorChars.map(item => currentDisplay.split('').includes(item)).includes(true))
 
     // return char === "=" ? setDisplay(total)
@@ -43,24 +44,25 @@ function App() {
     //     : setDisplay(currentDisplay.concat(char))
 
     return char === "=" ? setDisplay(total)
-    :  operatorChars.map(item => currentDisplay.split('').includes(item)).includes(true) ? setDisplay(`${total}${char}`)
-      : setDisplay(currentDisplay.concat(char))
+      : operatorChars.map(item => currentDisplay.split('').includes(item)).includes(true) ? setDisplay(`${total}${char}`)
+        : setDisplay(currentDisplay.concat(char))
   }
 
 
   const specialHandler = (e) => {
 
     const char = e.target.textContent
+    const total = math.round(math.evaluate(currentDisplay), 4)
 
     const inverse = (num) => {
 
-      return num > 0 ? num - (num *2)
+      return num > 0 ? num - (num * 2)
         : num + (math.sqrt(math.pow(num, 2)) * 2)
     }
 
     return char === "C" ? setDisplay(0)
-      : char === "%" ? setDisplay(math.round(math.evaluate(display)) / 100)
-        : setDisplay(inverse(math.evaluate(display)))
+      : char === "%" ? setDisplay(total / 100)
+        : setDisplay(inverse(total))
   }
 
 
@@ -68,9 +70,10 @@ function App() {
 
     const char = e.target.textContent
 
-    return numbersChars.includes(char) ? numberHandler(e)
-      : operatorChars.includes(char) ? operatorHandler(e)
-        : specialHandler(e)
+    return currentDisplay === "Error" ? setDisplay(0)
+      : numbersChars.includes(char) ? numberHandler(e)
+        : operatorChars.includes(char) ? operatorHandler(e)
+          : specialHandler(e)
   }
 
 
