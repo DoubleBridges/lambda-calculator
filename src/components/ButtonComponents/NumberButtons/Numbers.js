@@ -3,6 +3,8 @@ import React from "react";
 import NumberButton from './NumberButton'
 import { numbers } from '../../../data'
 
+import './NumberButtons.scss'
+
 export const numbersChars = numbers.map(numChar => numChar = numChar.char)
 
 const Numbers = (props) => {

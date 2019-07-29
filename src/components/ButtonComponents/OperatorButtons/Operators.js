@@ -3,6 +3,8 @@ import React from "react";
 import OperatorButton from './OperatorButton'
 import { operators } from '../../../data'
 
+import './Operators.scss'
+
 export const operatorChars = operators.map(opChar => opChar = opChar.char)
 
 const Operators = (props) => {

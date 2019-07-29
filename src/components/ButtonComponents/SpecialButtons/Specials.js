@@ -3,6 +3,8 @@ import React from "react";
 import SpecialButton from './SpecialButton'
 import { specials } from '../../../data'
 
+import './Specials.scss'
+
 export const specialChars = specials.map(spChar => spChar = spChar.char)
 
 const Specials = (props) => {

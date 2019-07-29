@@ -1,0 +1,14 @@
+.screen {
+    grid-area       : 2 / 1 / 3 / 5;
+    display         : flex;
+    justify-content : flex-end;
+    align-items     : center;
+    background-color: rgb(28, 54, 54);
+    border-radius   : 60px;
+
+    .display {
+        padding-right: 50px;
+        font         : 600 3rem bolder;
+
+    }
+}
