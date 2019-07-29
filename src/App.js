@@ -1,26 +1,95 @@
-import React from "react";
-import "./App.css";
-// STEP 4 - import the button and display components
-// Don't forget to import any extra css/scss files you build into the correct component
+import React, { useState } from "react";
+import Display from '../src/components/DisplayComponents/Display'
+import Numbers, { numbersChars } from './components/ButtonComponents/NumberButtons/Numbers'
+import Operators, { operatorChars } from './components/ButtonComponents/OperatorButtons/Operators'
+import Specials from './components/ButtonComponents/SpecialButtons/Specials'
 
-// Logo has already been provided for you. Do the same for the remaining components
+import "./App.scss";
 import Logo from "./components/DisplayComponents/Logo";
 
+const math = require('../node_modules/mathjs');
+
 function App() {
-  // STEP 5 - After you get the components displaying using the provided data file, write your state hooks here.
-  // Once the state hooks are in place write some functions to hold data in state and update that data depending on what it needs to be doing
-  // Your functions should accept a parameter of the the item data being displayed to the DOM (ie - should recieve 5 if the user clicks on
-  // the "5" button, or the operator if they click one of those buttons) and then call your setter function to update state.
-  // Don't forget to pass the functions (and any additional data needed) to the components as props
+
+  const [display, setDisplay] = useState(0)
+  const [hasDecimal, setHasDecimal] = useState(false);
+  const [hasOperator, setHasOperator] = useState(false);
+
+  const currentDisplay = display.toString()
+
+
+  const numberHandler = (e) => {
+
+    const char = e.target.textContent
+
+    setHasDecimal(currentDisplay.split('').includes("."))
+
+    return (char === ".") && hasDecimal ? setDisplay("Error")
+      : (char === ".") ? setDisplay(currentDisplay.concat(char))
+        : (currentDisplay === "0") ? setDisplay(currentDisplay.concat(char).slice(1))
+          : setDisplay(currentDisplay.concat(char))
+  }
+
+
+  const operatorHandler = (e) => {
+
+    const char = e.target.attributes.getNamedItem('operation').value
+    const total = math.round(math.evaluate(display), 4)
+
+
+    // setHasOperator(operatorChars.map(item => currentDisplay.split('').includes(item)).includes(true))
+
+    // return char === "=" ? setDisplay(total)
+    //   :  hasOperator ? setDisplay(`${total}${char}`)
+    //     : setDisplay(currentDisplay.concat(char))
+
+    return char === "=" ? setDisplay(total)
+      : operatorChars.map(item => currentDisplay.split('').includes(item)).includes(true) ? setDisplay(`${total}${char}`)
+        : setDisplay(currentDisplay.concat(char))
+  }
+
+
+  const specialHandler = (e) => {
+
+    const char = e.target.textContent
+    const total = math.round(math.evaluate(currentDisplay), 4)
+
+    const inverse = (num) => {
+
+      return num > 0 ? num - (num * 2)
+        : num + (math.sqrt(math.pow(num, 2)) * 2)
+    }
+
+    return char === "C" ? setDisplay(0)
+      : char === "%" ? setDisplay(total / 100)
+        : setDisplay(inverse(total))
+  }
+
+
+  const buttonHandler = (e) => {
+
+    const char = e.target.textContent
+
+    return currentDisplay === "Error" ? setDisplay(0)
+      : numbersChars.includes(char) ? numberHandler(e)
+        : operatorChars.includes(char) ? operatorHandler(e)
+          : specialHandler(e)
+  }
+
 
   return (
     <div className="container">
       <Logo />
-      <div className="App">
-        {/* STEP 4 - Render your components here and be sure to properly import/export all files */}
-      </div>
+      <Display
+        display={display} />
+      <Numbers
+        clicked={buttonHandler} />
+      <Operators
+        clicked={buttonHandler} />
+      <Specials
+        clicked={buttonHandler} />
     </div>
   );
 }
 
-export default App;
+export default App
