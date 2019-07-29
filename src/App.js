@@ -13,6 +13,7 @@ function App() {
 
   const [display, setDisplay] = useState(0)
   const [hasDecimal, setHasDecimal] = useState(false);
+  const [hasOperator, setHasOperator] = useState(false);
 
   const currentDisplay = display.toString()
 
@@ -35,9 +36,15 @@ function App() {
     const char = e.target.attributes.getNamedItem('operation').value
     const total = math.round(math.evaluate(display), 4)
 
+    // setHasOperator(operatorChars.map(item => currentDisplay.split('').includes(item)).includes(true))
+
+    // return char === "=" ? setDisplay(total)
+    //   :  hasOperator ? setDisplay(`${total}${char}`)
+    //     : setDisplay(currentDisplay.concat(char))
+
     return char === "=" ? setDisplay(total)
-      : operatorChars.map(item => currentDisplay.split('').includes(item)).includes(true) ? setDisplay(`${total}${char}`)
-        : setDisplay(currentDisplay.concat(char))
+    :  operatorChars.map(item => currentDisplay.split('').includes(item)).includes(true) ? setDisplay(`${total}${char}`)
+      : setDisplay(currentDisplay.concat(char))
   }
 
 
