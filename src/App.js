@@ -13,9 +13,11 @@ function App() {
 
   const [display, setDisplay] = useState(0)
 
+  const currentDisplay = display.toString()
+
+
   const numberHandler = (e) => {
 
-    const currentDisplay = display.toString()
     const char = e.target.textContent
 
     return ((char === ".") && (currentDisplay.split('').includes("."))) ? setDisplay("Error")
@@ -28,7 +30,6 @@ function App() {
   const operatorHandler = (e) => {
 
     const char = e.target.attributes.getNamedItem('operation').value
-    const currentDisplay = display.toString()
     const total = math.round(math.evaluate(display), 4)
 
     return char === "=" ? setDisplay(total)
@@ -42,8 +43,9 @@ function App() {
     const char = e.target.textContent
 
     const inverse = (num) => {
-      return num > 0 ? num - (num * 2)
-        : num + (num * 2)
+      console.log(num, math.sqrt(math.pow(num, 2)))
+      return num > 0 ? num - (num *2)
+        : num + (math.sqrt(math.pow(num, 2)) * 2)
     }
 
     return char === "C" ? setDisplay(0)
