@@ -12,6 +12,7 @@ const math = require('../node_modules/mathjs');
 function App() {
 
   const [display, setDisplay] = useState(0)
+  const [hasDecimal, setHasDecimal] = useState(false);
 
   const currentDisplay = display.toString()
 
@@ -20,7 +21,9 @@ function App() {
 
     const char = e.target.textContent
 
-    return ((char === ".") && (currentDisplay.split('').includes("."))) ? setDisplay("Error")
+    setHasDecimal(currentDisplay.split('').includes("."))
+
+    return (char === ".") &&  hasDecimal ? setDisplay("Error")
       : (char === ".") ? setDisplay(currentDisplay.concat(char))
         : (currentDisplay === "0") ? setDisplay(currentDisplay.concat(char).slice(1))
           : setDisplay(currentDisplay.concat(char))
@@ -43,7 +46,7 @@ function App() {
     const char = e.target.textContent
 
     const inverse = (num) => {
-      console.log(num, math.sqrt(math.pow(num, 2)))
+
       return num > 0 ? num - (num *2)
         : num + (math.sqrt(math.pow(num, 2)) * 2)
     }
